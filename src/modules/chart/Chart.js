@@ -25,7 +25,6 @@ function DisplayChart() {
 				<ApexCharts
 					options={chartDataToDisplay.options}
 					series={chartDataToDisplay.series}
-					type="line"
 					className="w-full"
 				/>
 			)}
