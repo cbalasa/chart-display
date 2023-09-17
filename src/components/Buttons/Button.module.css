@@ -1,0 +1,15 @@
+.buttonWrapper {
+	@apply flex  items-center justify-center;
+}
+
+.button {
+	@apply flex  items-center justify-between rounded-lg after:absolute  overflow-hidden h-10 px-2 after:duration-300 duration-300 active:bg-lightBlue disabled:bg-transparent disabled:text-lightGrey;
+}
+
+.buttonIcon {
+	@apply bg-lightGrey p-2.5  hover:bg-darkGrey rounded-lg  after:duration-300 duration-300 active:bg-lightBlue;
+}
+
+.buttonIconText {
+	@apply bg-white border border-mediumGrey  hover:bg-darkGrey min-w-[119px] rounded-lg text-black font-medium text-sm after:duration-300 duration-300 active:bg-lightBlue;
+}

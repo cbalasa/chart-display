@@ -1,5 +1,10 @@
-import '@/styles/globals.css'
+import "@/styles/globals.css";
+import { LoadingScreenProvider } from "@/context/Loading";
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+	return (
+		<LoadingScreenProvider>
+			<Component {...pageProps} />
+		</LoadingScreenProvider>
+	);
 }

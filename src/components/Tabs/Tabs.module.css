@@ -1,0 +1,15 @@
+.tabsWrapper {
+	@apply flex flex-wrap text-xl font-medium text-center text-darkBlue bg-lightGrey my-2 p-3 rounded-xl gap-2;
+}
+
+.tab {
+	@apply flex items-center justify-center cursor-pointer px-2.5 py-2.5 h-12;
+}
+
+.tabNotActive {
+	@apply opacity-60 tab border border-transparent;
+}
+
+.tabActive {
+	@apply bg-white rounded-lg border border-mediumGrey shadow-md tab;
+}

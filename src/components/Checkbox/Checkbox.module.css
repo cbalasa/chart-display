@@ -1,0 +1,28 @@
+.container {
+	@apply relative pl-7  cursor-pointer select-none flex;
+}
+
+.container input {
+	@apply opacity-0 cursor-pointer h-0 w-0;
+}
+
+.checkmark {
+	@apply absolute bg-white top-0 left-0 h-5 w-5 border border-mediumGrey rounded-md flex self-end;
+}
+
+.container input:checked ~ .checkmark {
+	@apply bg-black border-inherit;
+}
+
+.checkmark:after {
+	content: "";
+	@apply absolute hidden;
+}
+
+.container input:checked ~ .checkmark:after {
+	@apply block;
+}
+
+.container .checkmark:after {
+	@apply ml-1.5 mt-1 w-1.5 h-2 border-r border-b rotate-45;
+}
