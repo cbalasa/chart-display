@@ -5,11 +5,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 1. Clone
 
 2. Install packages
-3. ```bash
+ ```bash
 npm i
 ```
 
-4. Run the development server:
+3. Run the development server:
 
 ```bash
 npm run dev
