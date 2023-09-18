@@ -14,6 +14,7 @@ function DisplayChart() {
 			columnDelimiter: ","
 		});
 	};
+
 	return (
 		<div className="lg:w-[1150px] items-center self-center m-auto p-5 bg-white shadow-md rounded-md flex flex-col">
 			<ChartHeader
@@ -21,7 +22,7 @@ function DisplayChart() {
 				exportToCSV={exportToCSV}
 			/>
 
-			{chartDataToDisplay && (
+			{chartDataToDisplay && Object.keys(chartDataToDisplay) && (
 				<ApexCharts
 					options={chartDataToDisplay.options}
 					series={chartDataToDisplay.series}
