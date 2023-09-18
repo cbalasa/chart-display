@@ -27,7 +27,11 @@ export default function Checkbox(props) {
 						className={[checkmarkColor, checkboxStyle.checkmark].join(" ")}
 						style={{
 							background: `${
-								checked ? (checkmarkColor ? [checkmarkColor] : "black") : ""
+								checked
+									? checkmarkColor
+										? [checkmarkColor]
+										: "black"
+									: "white"
 							}`
 						}}
 					></span>

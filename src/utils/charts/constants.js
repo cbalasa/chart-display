@@ -27,10 +27,20 @@ export const chartOptions = {
 	chart: {
 		id: null,
 		toolbar: {
-			show: false
+			show: false,
+			tools: {
+				download: false,
+				selection: false,
+				zoom: false,
+				zoomin: false,
+				zoomout: false,
+				pan: false,
+				reset: false,
+				menu: false
+			}
 		},
 		zoom: {
-			enabled: true,
+			enabled: false,
 			type: "x",
 			autoScaleYaxis: false,
 			zoomedArea: {

@@ -4,14 +4,17 @@ import { chartOptions } from "@/utils/charts/constants";
 const useSetChartData = ({ getChartData, url }) => {
 	const [data, setData] = useState(null);
 	const [chartData, setChartData] = useState(null);
-	const getData = useCallback(async () => {
-		const chartData = await getChartData({ url });
-		setChartData(chartData);
-	}, [getChartData, url]);
+	const getData = useCallback(
+		async ({ url }) => {
+			const chartData = await getChartData({ url });
+			setChartData(chartData);
+		},
+		[getChartData]
+	);
 
 	useEffect(() => {
-		getData();
-	}, []);
+		getData({ url });
+	}, [url]);
 
 	useEffect(() => {
 		if (chartData) {
@@ -35,6 +38,8 @@ const useSetChartData = ({ getChartData, url }) => {
 					}
 				]
 			});
+		} else {
+			setData(null);
 		}
 	}, [chartData]);
 

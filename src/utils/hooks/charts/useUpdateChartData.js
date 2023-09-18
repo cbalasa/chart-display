@@ -10,6 +10,38 @@ const useUpdateChartData = ({ data, chartData }) => {
 		setChartDataToDisplay(data);
 	}, [data]);
 
+	const enableZoom = () => {
+		const newOptions = {
+			...chartDataToDisplay,
+			options: {
+				...chartDataToDisplay.options,
+				chart: {
+					...chartDataToDisplay.options.chart,
+					zoom: {
+						...chartDataToDisplay.options.chart.zoom,
+						enabled: true
+					},
+					toolbar: {
+						...toolbar,
+						show: true,
+						tools: {
+							...chartDataToDisplay.options.chart.toolbar.tools,
+							zoomin: !chartDataToDisplay.options.chart.toolbar.tools.zoomin,
+							zoomout: !chartDataToDisplay.options.chart.toolbar.tools.zoomout
+						}
+					}
+				}
+			}
+		};
+		setChartDataToDisplay(newOptions);
+	};
+
+	const exportToCSV = () => {
+		window.Apex._chartInstances[0].chart.ctx.exports.exportToCSV({
+			series: chartDataToDisplay.series,
+			columnDelimiter: ","
+		});
+	};
 	const updateChart = useCallback(
 		({ chartCompareWith }) => {
 			const dataClone = { ...chartDataToDisplay };
@@ -46,7 +78,7 @@ const useUpdateChartData = ({ data, chartData }) => {
 		updateChart({ chartCompareWith });
 	}, [chartCompareWith]);
 
-	return { chartDataToDisplay };
+	return { chartDataToDisplay, enableZoom, exportToCSV };
 };
 
 export default useUpdateChartData;

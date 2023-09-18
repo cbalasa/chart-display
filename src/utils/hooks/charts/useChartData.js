@@ -9,12 +9,12 @@ const useChartData = ({ url }) => {
 		url
 	});
 
-	const { chartDataToDisplay } = useUpdateChartData({
+	const { chartDataToDisplay, enableZoom, exportToCSV } = useUpdateChartData({
 		data,
 		chartData
 	});
 
-	return { chartDataToDisplay };
+	return { chartDataToDisplay, enableZoom, exportToCSV };
 };
 
 export default useChartData;

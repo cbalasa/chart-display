@@ -5,13 +5,17 @@ const useGetChartData = () => {
 	const { setLoading } = useLoadingScreen();
 	const getChartData = async ({ url }) => {
 		try {
-			setLoading(true);
-			const {
-				data: { data }
-			} = await axios.get(url);
-			setLoading(false);
+			if (url) {
+				setLoading(true);
+				const {
+					data: { data }
+				} = await axios.get(url);
+				setLoading(false);
 
-			return data;
+				return data;
+			} else {
+				return null;
+			}
 		} catch (error) {
 			setLoading(false);
 			console.log(error);

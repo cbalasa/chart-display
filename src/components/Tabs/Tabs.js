@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import tabsStyle from "./Tabs.module.css";
 import useSetActiveTabs from "@/utils/hooks/tabs/useSetActiveTabs";
 function Tabs({ tabs, setActiveTab }) {
