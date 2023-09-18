@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import ChartHeader from "./components/ChartHeader";
-import useUpdateChartData from "@/utils/hooks/charts/useUpdateChartData";
+import useChartData from "@/utils/hooks/charts/useChartData";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 function DisplayChart() {
-	const { setCompareWithChange, chartDataToDisplay } = useUpdateChartData({
+	const { chartDataToDisplay } = useChartData({
 		url: "https://run.mocky.io/v3/b48be7cc-2082-479d-8ff7-83c003537f83"
 	});
 
@@ -15,14 +15,15 @@ function DisplayChart() {
 		});
 	};
 
+	const chartHasData = () => {
+		return chartDataToDisplay && Object.keys(chartDataToDisplay).length;
+	};
+
 	return (
 		<div className="lg:w-[1150px] items-center self-center m-auto p-5 bg-white shadow-md rounded-md flex flex-col">
-			<ChartHeader
-				compareWithChange={setCompareWithChange}
-				exportToCSV={exportToCSV}
-			/>
+			<ChartHeader exportToCSV={exportToCSV} />
 
-			{chartDataToDisplay && Object.keys(chartDataToDisplay) && (
+			{chartHasData() && (
 				<ApexCharts
 					options={chartDataToDisplay.options}
 					series={chartDataToDisplay.series}

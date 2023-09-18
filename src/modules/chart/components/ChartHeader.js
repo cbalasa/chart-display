@@ -6,7 +6,7 @@ import ButtonIconText from "@/components/Buttons/ButtonIconText";
 import Tabs from "@/components/Tabs/Tabs";
 import { chartTabs } from "@/utils/charts/constants";
 import CompareWith from "./CompareWith";
-function ChartHeader({ compareWithChange, exportToCSV }) {
+function ChartHeader({ exportToCSV }) {
 	const [activeTab, setActiveTab] = useState({});
 	return (
 		<div className="flex flex-col w-full px-2 mb-4">
@@ -22,10 +22,7 @@ function ChartHeader({ compareWithChange, exportToCSV }) {
 				</div>
 			</div>
 			<Tabs tabs={chartTabs.customerFeedback} setActiveTab={setActiveTab} />
-			<CompareWith
-				activeTab={activeTab}
-				compareWithChange={compareWithChange}
-			/>
+			<CompareWith activeTab={activeTab} />
 		</div>
 	);
 }

@@ -1,27 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
-import useGetChartData from "./useGetChartData";
-import useSetChartData from "./useSetChartData";
-
-const useUpdateChartData = ({ url }) => {
-	const { getChartData } = useGetChartData();
-	const { data, chartData } = useSetChartData({
-		getChartData,
-		url
-	});
-	const [compareWithChange, setCompareWithChange] = useState(null);
-
+import { chartCompareWithSelected } from "@/store/chart";
+import { useSelector } from "react-redux";
+const useUpdateChartData = ({ data, chartData }) => {
 	const [chartDataToDisplay, setChartDataToDisplay] = useState(data);
+
+	const chartCompareWith = useSelector(chartCompareWithSelected);
 
 	useEffect(() => {
 		setChartDataToDisplay(data);
 	}, [data]);
 
 	const updateChart = useCallback(
-		({ compareWithChange }) => {
+		({ chartCompareWith }) => {
 			const dataClone = { ...chartDataToDisplay };
 
-			if (compareWithChange?.target.name === "responseRate") {
-				if (compareWithChange?.target.checked) {
+			if (chartCompareWith && chartCompareWith.name === "responseRate") {
+				if (chartCompareWith.checked) {
 					dataClone.series = [
 						...dataClone.series,
 						{
@@ -49,10 +43,10 @@ const useUpdateChartData = ({ url }) => {
 	);
 
 	useEffect(() => {
-		updateChart({ compareWithChange });
-	}, [compareWithChange]);
+		updateChart({ chartCompareWith });
+	}, [chartCompareWith]);
 
-	return { setCompareWithChange, chartDataToDisplay };
+	return { chartDataToDisplay };
 };
 
 export default useUpdateChartData;

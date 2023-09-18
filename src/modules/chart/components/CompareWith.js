@@ -2,8 +2,19 @@ import Checkbox from "@/components/Checkbox/Checkbox";
 import Icon from "@/components/Icon/Icon";
 import { icons } from "@/utils/constants";
 import React from "react";
+import { setchartActions } from "@/store/chart";
+import { useDispatch } from "react-redux";
+function CompareWith({ activeTab }) {
+	const dispatch = useDispatch();
 
-function CompareWith({ activeTab, compareWithChange }) {
+	const updateChartCompareWith = (newSelection) => {
+		const compareWith = {
+			name: newSelection.target.name,
+			checked: newSelection.target.checked
+		};
+		return dispatch(setchartActions.chartCompareWithReducer(compareWith));
+	};
+
 	return (
 		<div className="flex gap-3 w-full justify-between text-sm px-3 lg:flex-row flex-col">
 			<div className="flex items-center justify-start gap-2 lg:w-1/12">
@@ -20,7 +31,7 @@ function CompareWith({ activeTab, compareWithChange }) {
 						<Checkbox
 							labelText="Year over year"
 							name="yearOverYear"
-							onChange={compareWithChange}
+							onChange={updateChartCompareWith}
 						/>
 					</div>
 					<div className="flex items-center justify-start gap-2 border border-mediumGrey rounded-md p-2 h-10">
@@ -28,7 +39,7 @@ function CompareWith({ activeTab, compareWithChange }) {
 							labelText="Month over month"
 							checkmarkColor="var(--fucsia)"
 							name="monthOverMonth"
-							onChange={compareWithChange}
+							onChange={updateChartCompareWith}
 						/>
 					</div>
 					<div className="flex items-center justify-start gap-2 border border-mediumGrey rounded-md p-2 h-10">
@@ -36,21 +47,21 @@ function CompareWith({ activeTab, compareWithChange }) {
 							labelText="Response rate"
 							checkmarkColor="var(--green)"
 							name="responseRate"
-							onChange={compareWithChange}
+							onChange={updateChartCompareWith}
 						/>
 					</div>
 					<div className="flex items-center justify-start gap-2 border bg-lightGrey border-mediumGrey rounded-md p-2 h-10">
 						<Checkbox
 							labelText="NPS Post"
 							name="npsPost"
-							onChange={compareWithChange}
+							onChange={updateChartCompareWith}
 						/>
 					</div>
 					<div className="flex items-center justify-start gap-2 border bg-lightGrey border-mediumGrey rounded-md p-2 h-10">
 						<Checkbox
 							labelText="NPS Delta"
 							name="npsDelta"
-							onChange={compareWithChange}
+							onChange={updateChartCompareWith}
 						/>
 					</div>
 				</div>
